@@ -5,25 +5,23 @@ using UnityEngine.UI;
 
 public class ScoreManagement : MonoBehaviour
 {
-    public int clickPow;
+    public int clickPow = 1;
     public int score;
     public Text scoreTxt;
-
-    public LayerMask LayerMask;
-    private Vector2 camPos;
-
+    private GameObject fook;
+    public Sprite idle;
     private void Start()
     {
-        Vector2 camPos = new Vector2(transform.position.x, transform.position.y);
-}
+        fook = GameObject.Find("Fook");
+    }
     private void Update()
     {
-        Vector2 direct = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-        RaycastHit2D hit = Physics2D.Raycast(camPos, direct);
-        if (hit)
+        Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hitInfo = Physics2D.GetRayIntersection(mouseRay);
+        if (hitInfo.collider!= null)
         {
-            Debug.Log("The ray hit " + hit.collider.name);
-            scoreViewer();
+            Debug.Log("The ray hit " + hitInfo.collider.name);
+            fook.GetComponent<SpriteRenderer>().sprite = idle;
         }
 
     }

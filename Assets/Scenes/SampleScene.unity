@@ -312,9 +312,7 @@ MonoBehaviour:
   clickPow: 1
   score: 0
   scoreTxt: {fileID: 288241838}
-  LayerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  idle: {fileID: 21300000, guid: 35a8bfd269bb3f040a2e93a5dc583336, type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -570,9 +568,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.0013652564}
   serializedVersion: 2
-  m_Radius: 0.085221365
+  m_Radius: 0.08658662
 --- !u!50 &1868753671
 Rigidbody2D:
   serializedVersion: 4
