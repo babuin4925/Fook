@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Accessibility;
 
 public class StatesAnimationsAndBasicControlls : MonoBehaviour
 {
@@ -53,12 +54,13 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
 
     public void Sit()
     {
-        isSitting = true;
         SpriteChange(sitting);
-        
+        FookAnim.enabled = true;
+        isSitting = true;
     }
     public void Stand()
     {
+        FookAnim.enabled = false;
         isSitting = false;
         isPlaying = false;
         SpriteChange(idle);
@@ -67,12 +69,12 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     public void EarShake()
     {
         isPlaying = true;
-        
+        Invoke("EarShakeContinous",1f);
     }
-    public void Play()
+    public void EarShakeContinous()
     {
-        isPlaying = true;
-        //Starts playing animation
+        isPlaying = false;
+        Invoke("EarShake",1f);
     }
     public void Click()
     {
@@ -83,5 +85,9 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     public void SpriteChange(Sprite neededSprite)
     {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = neededSprite;
+    }
+    public void TestAnim()
+    {
+        FookAnim.enabled = true;
     }
 }
