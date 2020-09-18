@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Accessibility;
+using UnityEngine.UI;
 
 public class StatesAnimationsAndBasicControlls : MonoBehaviour
 {
     bool isSitting = true;
-    bool isSittingIdle = true;
+    bool IsHungry = false;
     bool isPlaying = false;
     bool isClicked = false;
 
@@ -15,16 +14,19 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     public Sprite sitting;
     public Sprite idle_clicked;
 
-    public float seconds;
+    public float timerSeconds;
+    public int hunger = 20;
+    public int maxHunger = 20;
 
     public Countdown timer;
     public ScoreManagement Score;
 
     public Animator FookAnim;
 
+    public Text awrnssTxt;
     private void Start()
     {
-        timer.SetTimer(5f, () => EarShake());
+        timer.SetTimer(timerSeconds, () => EarShake());
         FookAnim = GetComponent<Animator>();
     }
     void Update()
@@ -34,7 +36,6 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
         if (hitInfo.collider != null)
         {
             Stand();
-            
 
             if (Input.GetMouseButton(0))
             {
@@ -64,7 +65,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
         isSitting = false;
         isPlaying = false;
         SpriteChange(idle);
-        timer.SetTimer(5f, ()=> EarShake());
+        timer.SetTimer(timerSeconds, ()=> EarShake());
     }
     public void EarShake()
     {
@@ -78,16 +79,20 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     }
     public void Click()
     {
-        Score.scoreIncrease();
+        if (hunger > 0)
+        {
+            Score.scoreIncrease();
+            hunger -= 1;
+        }
+        else
+        {
+            Score.AwarenessTextShow("Fook can't poop while hungry!");
+        }
     }
 
 
     public void SpriteChange(Sprite neededSprite)
     {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = neededSprite;
-    }
-    public void TestAnim()
-    {
-        FookAnim.enabled = true;
     }
 }
