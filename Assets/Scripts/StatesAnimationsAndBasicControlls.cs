@@ -51,6 +51,10 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
             Sit();
         }
         FookAnim.SetBool("EarShaking", isPlaying);
+        if (Input.GetKeyDown("i")) //Debug key
+        {
+            Score.score += 100;
+        }
     }
 
     public void Sit()
@@ -79,10 +83,10 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     }
     public void Click()
     {
-        if (hunger > 0)
+        if (hunger -Score.clickPow >= 0)
         {
             Score.scoreIncrease();
-            hunger -= 1;
+            hunger -= Score.clickPow;
         }
         else
         {

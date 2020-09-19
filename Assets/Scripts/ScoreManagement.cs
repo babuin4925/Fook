@@ -10,10 +10,14 @@ public class ScoreManagement : MonoBehaviour
     public Text scoreTxt;
     public Countdown timer;
     public Text awrnssTxt;
+
+    private void Update()
+    {
+        scoreTxt.text = score.ToString();
+    }
     public void scoreIncrease()
     {
-        score = score + clickPow;
-        scoreTxt.text = score.ToString();
+        score = score + clickPow; 
     }
     public void AwarenessTextShow(string message)
     {
