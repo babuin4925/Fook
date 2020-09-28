@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Accessibility;
 using UnityEngine.UI;
 
+public delegate void twoIntParamDelegate(int a, int b);
 public class StatesAnimationsAndBasicControlls : MonoBehaviour
 {
     bool isSitting = true;
@@ -24,6 +25,10 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     public Animator FookAnim;
 
     public Text awrnssTxt;
+
+    public event twoIntParamDelegate OnHungerLowered;
+
+
     private void Start()
     {
         timer.SetTimer(timerSeconds, () => EarShake());
@@ -83,10 +88,11 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     }
     public void Click()
     {
-        if (hunger -Score.clickPow >= 0)
+        if (hunger -1 >= 0)
         {
             Score.scoreIncrease();
-            hunger -= Score.clickPow;
+            hunger -= 1;
+            OnHungerLowered?.Invoke(hunger, maxHunger);
         }
         else
         {
@@ -99,4 +105,5 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = neededSprite;
     }
+
 }

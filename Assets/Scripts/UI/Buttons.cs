@@ -1,7 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using System.Runtime.InteropServices;
+using System;
+using UnityEngine.EventSystems;
 
 public class Buttons : MonoBehaviour
 {
@@ -9,14 +9,19 @@ public class Buttons : MonoBehaviour
     public ScoreManagement scoreManagement;
 
     private int fookHunger;
-    private int foodPrice = 10;
-    private int IPPPrice = 50;
-    private int MHPrice = 100;
+    public int foodPrice = 10;
+    public int IPPPrice = 50;
+    public int MHPrice = 100;
     private int clickPower;
+
+    public float clickPricemultiplier = 2f;
+
 
     public Text BuyFoodTxt;
     public Text IPPBTxt;
     public Text MHBTxt;
+
+    public event EventHandler OnFoodBuyed;
 
     private void Update()
     {
@@ -31,12 +36,13 @@ public class Buttons : MonoBehaviour
                 scoreManagement.score -= foodPrice;
                 controller.hunger = controller.maxHunger;
                 scoreManagement.scoreTxt.text = scoreManagement.score.ToString();
-
-                BuyFoodTxt.text = "-" + foodPrice + " gold";
+                OnFoodBuyed?.Invoke(this, EventArgs.Empty);
+                
+                BuyFoodTxt.text = "-" + foodPrice + "g";
             }
             else
             {
-                scoreManagement.AwarenessTextShow("You don't have enough money!");
+                YourePoor();
             }
         }
         else
@@ -50,14 +56,14 @@ public class Buttons : MonoBehaviour
         {
             scoreManagement.score -= IPPPrice;
             scoreManagement.clickPow++;
-            IPPPrice = (int)(IPPPrice* 1.5);
+            IPPPrice = (int)(IPPPrice* clickPricemultiplier);
             scoreManagement.scoreTxt.text = scoreManagement.score.ToString();
 
-            IPPBTxt.text = "-" + IPPPrice + " gold";
+            IPPBTxt.text = "-" + IPPPrice + "g";
         }
         else
         {
-            scoreManagement.AwarenessTextShow("You don't have enough money!");
+            YourePoor();
         }
     }
     public void IncreaseMaxHunger()
@@ -67,14 +73,27 @@ public class Buttons : MonoBehaviour
             scoreManagement.score -= MHPrice;
             controller.maxHunger += 10;
             MHPrice += 100;
-            foodPrice += 5;
+            foodPrice += 10;
 
-            MHBTxt.text = "-" + MHPrice + " gold";
-            BuyFoodTxt.text = "-" + foodPrice + " gold";
+
+            MHBTxt.text = "-" + MHPrice + "g";
+            BuyFoodTxt.text = "-" + foodPrice + "g";
         }
         else
         {
-            scoreManagement.AwarenessTextShow("You don't have enough money!");
+            YourePoor();
         }
+    }
+    public void YourePoor()
+    {
+        scoreManagement.AwarenessTextShow("Not enough gold!");
+    }
+    public bool YourePoor(int price)
+    {
+        if (price > scoreManagement.score)
+        {
+            return true;
+        }
+        return false;
     }
 }
