@@ -35,7 +35,7 @@ public class UIPanel : MonoBehaviour
             }
         }
         //Debug.Log(Input.mousePosition.x);
-        if (onScreen && Input.mousePosition.x < 600f)
+        if (onScreen && Input.mousePosition.x < 570f)
         {
             IsSliding = true; //function that checks if our cursor is far from the panel and if the panel is on screen sets IsSliding to true
         }

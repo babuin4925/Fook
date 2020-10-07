@@ -45,7 +45,6 @@ public class HungerBar : MonoBehaviour
         for (int i = 0; i<number; i++)
         {
             boolArray[i] = true;
-            Debug.Log(i +"-"+ number);
         }
         HungerDisplayer(hungerBarArr, hungerBarUIArr);
     }

@@ -7,19 +7,15 @@ public delegate void twoIntParamDelegate(int a, int b);
 public class StatesAnimationsAndBasicControlls : MonoBehaviour
 {
     bool isSitting = true;
-    bool IsHungry = false;
     bool isPlaying = false;
-    bool isClicked = false;
 
     public Sprite idle;
     public Sprite sitting;
     public Sprite idle_clicked;
 
-    public float timerSeconds;
     public int hunger = 20;
     public int maxHunger = 20;
 
-    public Countdown timer;
     public ScoreManagement Score;
 
     public Animator FookAnim;
@@ -27,11 +23,10 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     public Text awrnssTxt;
 
     public event twoIntParamDelegate OnHungerLowered;
-
+    public event EventHandler OnFookStanding;
 
     private void Start()
     {
-        timer.SetTimer(timerSeconds, () => EarShake());
         FookAnim = GetComponent<Animator>();
     }
     void Update()
@@ -45,6 +40,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 SpriteChange(idle_clicked);
+                OnFookStanding?.Invoke(this, EventArgs.Empty);
             }
             if (Input.GetMouseButtonUp(0))
             {
@@ -55,7 +51,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
         {
             Sit();
         }
-        FookAnim.SetBool("EarShaking", isPlaying);
+
         if (Input.GetKeyDown("i")) //Debug key
         {
             Score.score += 100;
@@ -74,17 +70,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
         isSitting = false;
         isPlaying = false;
         SpriteChange(idle);
-        timer.SetTimer(timerSeconds, ()=> EarShake());
-    }
-    public void EarShake()
-    {
-        isPlaying = true;
-        Invoke("EarShakeContinous",1f);
-    }
-    public void EarShakeContinous()
-    {
-        isPlaying = false;
-        Invoke("EarShake",1f);
+        OnFookStanding?.Invoke(this, EventArgs.Empty);
     }
     public void Click()
     {
