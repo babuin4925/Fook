@@ -10,31 +10,25 @@ public class ShopItem : ScriptableObject
 {
     public int cost;
 
-    public Image image;
-    private Image buttonImage;
+    public int foodPriceBonus = 0;
+    public int maxHungerBonus = 0;
+    public int clickPowerBonus = 0;
+    public int angerIncrease = 0;
+    public Sprite sprite;
 
     public new string name;
-    public string itemType;
+    public string description;
+
+    public int[] bonusList = new int[4];
 
     private bool bought = false;
 
-    /*void tryBuy(int money)
+    public int[] FormArray()
     {
-        if (!bought)
-        {
-            if (money > price)
-            {
-                bought = true;
-
-            }
-        }
-        else
-        {
-            Equip();
-        }
+        bonusList[0] = foodPriceBonus;
+        bonusList[1] = maxHungerBonus;
+        bonusList[2] = clickPowerBonus;
+        bonusList[3] = angerIncrease;
+        return bonusList;
     }
-    void Equip()
-    {
-
-    }*/
 }

@@ -9,23 +9,49 @@ public class Buttons : MonoBehaviour
     public ScoreManagement scoreManagement;
 
     private int fookHunger;
-    public int foodPrice = 10;
+    private int foodPrice = 10;
+    public int FoodPrice
+    {
+        get
+        {
+            return foodPrice;
+        }
+        set
+        {
+            foodPrice = value;
+            BuyFoodTxt.text = "-" + foodPrice + "g";
+        }
+    }
     public int IPPPrice = 50;
     public int MHPrice = 100;
     private int clickPower;
 
     public float clickPricemultiplier = 2f;
 
-
     public Text BuyFoodTxt;
     public Text IPPBTxt;
     public Text MHBTxt;
 
     public event EventHandler OnFoodBuyed;
+      
+    private bool eventTrigger = false;
+    public bool EventTrigger
+    {
+        get
+        {
+            return eventTrigger;
+        }
+        set
+        {
+            OnFoodBuyed?.Invoke(this, EventArgs.Empty);
+            //eventTrigger = false;
+            Debug.Log("Event =Triggered");
+        }
+    }
 
     private void Update()
     {
-        fookHunger = controller.hunger;
+        
     }
     public void BuyFood()
     {

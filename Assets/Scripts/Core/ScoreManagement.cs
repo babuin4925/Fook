@@ -7,6 +7,18 @@ public class ScoreManagement : MonoBehaviour
 {
     public int clickPow = 1;
     public int score;
+    public int Score
+    {
+        get
+        {
+            return score;
+        }
+        set
+        {
+            score = value;
+            scoreTxt.text = score.ToString();
+        }
+    }
     public Text scoreTxt;
     public Countdown timer;
     public Text awrnssTxt;

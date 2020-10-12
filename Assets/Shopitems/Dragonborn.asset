@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660f99452bff7c9469002e5046043297, type: 3}
+  m_Name: Dragonborn
+  m_EditorClassIdentifier: 
+  cost: 800
+  foodPriceBonus: 10
+  maxHungerBonus: 20
+  clickPowerBonus: 1
+  angerIncrease: 0
+  sprite: {fileID: -7566031879410477842, guid: c57c723e4a2c63840821595d14d77eca, type: 3}
+  name: Dragonborn
+  description: FOOK RO DAAH. Fook yells at the pet shop worker and gets a 10 point
+    discount! He becomes stronger and his max hunger increases by 20! Fook poops harder!
+    (1 point)

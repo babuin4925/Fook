@@ -18,7 +18,7 @@ public class HungerBar : MonoBehaviour
     private Image[] hungerBarUIArr = new Image[5];
     private bool[] hungerBarArr = new bool[5];
     private void Start()
-    {//
+    {
         hungerBarUIArr = new Image[] {scale1, scale2, scale3, scale4, scale5};
         SetScaleAll(hungerBarArr, true);
 
@@ -35,6 +35,7 @@ public class HungerBar : MonoBehaviour
         }
         else
         {
+            Debug.Log("if the error is here say bruh");
             scaleSize = MaxHunger / 5;
             SetScale((int)(hunger / scaleSize) + 1, hungerBarArr);
         }
