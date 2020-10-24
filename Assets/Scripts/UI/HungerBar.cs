@@ -35,9 +35,15 @@ public class HungerBar : MonoBehaviour
         }
         else
         {
-            Debug.Log("if the error is here say bruh");
-            scaleSize = MaxHunger / 5;
-            SetScale((int)(hunger / scaleSize) + 1, hungerBarArr);
+            if (hunger == MaxHunger)
+            {
+                SetScaleAll(hungerBarArr, true);
+            }
+            else
+            {
+                scaleSize = MaxHunger / 5;
+                SetScale((int)(hunger / scaleSize) + 1, hungerBarArr);
+            }
         }
     }
     private void SetScale(int number , bool[] boolArray)

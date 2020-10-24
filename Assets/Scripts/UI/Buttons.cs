@@ -7,6 +7,7 @@ public class Buttons : MonoBehaviour
 {
     public StatesAnimationsAndBasicControlls controller;
     public ScoreManagement scoreManagement;
+    public HungerBar hungerBar;
 
     private int fookHunger;
     private int foodPrice = 10;
@@ -22,45 +23,26 @@ public class Buttons : MonoBehaviour
             BuyFoodTxt.text = "-" + foodPrice + "g";
         }
     }
-    public int IPPPrice = 50;
+    public int IPPPrice = 100;
     public int MHPrice = 100;
-    private int clickPower;
 
-    public float clickPricemultiplier = 2f;
+    private double clickPricePower = 1.5f;
+    private double MHPricePower = 6; 
 
     public Text BuyFoodTxt;
     public Text IPPBTxt;
     public Text MHBTxt;
 
     public event EventHandler OnFoodBuyed;
-      
-    private bool eventTrigger = false;
-    public bool EventTrigger
-    {
-        get
-        {
-            return eventTrigger;
-        }
-        set
-        {
-            OnFoodBuyed?.Invoke(this, EventArgs.Empty);
-            //eventTrigger = false;
-            Debug.Log("Event =Triggered");
-        }
-    }
-
-    private void Update()
-    {
-        
-    }
+     
     public void BuyFood()
     {
-        if (controller.hunger != controller.maxHunger)
+        if (controller.hunger != controller.maxHunger + controller.bonusHunger)
         {
             if (scoreManagement.score >= foodPrice)
             {
                 scoreManagement.score -= foodPrice;
-                controller.hunger = controller.maxHunger;
+                controller.hunger = controller.maxHunger + controller.bonusHunger;
                 scoreManagement.scoreTxt.text = scoreManagement.score.ToString();
                 OnFoodBuyed?.Invoke(this, EventArgs.Empty);
                 
@@ -82,7 +64,8 @@ public class Buttons : MonoBehaviour
         {
             scoreManagement.score -= IPPPrice;
             scoreManagement.clickPow++;
-            IPPPrice = (int)(IPPPrice* clickPricemultiplier);
+            IPPPrice = (int)(Math.Pow(2, clickPricePower)*50);
+            clickPricePower += 0.5;
             scoreManagement.scoreTxt.text = scoreManagement.score.ToString();
 
             IPPBTxt.text = "-" + IPPPrice + "g";
@@ -98,12 +81,15 @@ public class Buttons : MonoBehaviour
         {
             scoreManagement.score -= MHPrice;
             controller.maxHunger += 10;
-            MHPrice += 100;
+            MHPrice = (int)Math.Pow(2.5, MHPricePower);
             foodPrice += 10;
+            MHPricePower += 0.5;
 
 
             MHBTxt.text = "-" + MHPrice + "g";
             BuyFoodTxt.text = "-" + foodPrice + "g";
+
+            hungerBar.HungerBarController(controller.hunger, controller.maxHunger + controller.bonusHunger);
         }
         else
         {

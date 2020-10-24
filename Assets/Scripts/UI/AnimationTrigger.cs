@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationTrigger : MonoBehaviour
@@ -8,24 +7,24 @@ public class AnimationTrigger : MonoBehaviour
     public StatesAnimationsAndBasicControlls controller;
     
     public Animator fookAnim;
-    public Animator eyesAnim;
 
-    public bool animating;
+    private bool animating;
 
-    public float seconds = 5f; 
+    private float seconds = 2f; 
     void Start()
     {
-        controller.OnFookStanding += EarShake;
+        StartCoroutine(Blink());
     }
-
-    IEnumerator StartAnimating()
+    IEnumerator Blink()
     {
-        yield return new WaitForSeconds(seconds);
-        animating = true;
-        fookAnim.SetBool("EarShaking", true);
-    }
-    public void EarShake(object o, EventArgs e)
-    {
-        StartCoroutine(StartAnimating());
+        while (true)
+        {
+            System.Random rnd = new System.Random();
+            seconds = rnd.Next(1,10);
+            yield return new WaitForSeconds(seconds);
+            controller.eyes.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            controller.eyes.SetActive(false);
+        }
     }
 }

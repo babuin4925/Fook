@@ -15,7 +15,6 @@ public class ShopPanel : MonoBehaviour
     [SerializeField]private GameObject hatsPanel;
     [SerializeField]private GameObject otherPanel;
 
-    public Text scoreInShop;
     public ScoreManagement manager;
     private void Start()
     {
@@ -28,7 +27,6 @@ public class ShopPanel : MonoBehaviour
     {
         panelAnim.Play("ShopPanelSlide");
         fadeAnim.Play("FadeIn");
-        scoreInShop.text = manager.score + "g";
 
         hatsPanel.SetActive(false);
         otherPanel.SetActive(false);
@@ -52,5 +50,10 @@ public class ShopPanel : MonoBehaviour
         otherPanel.SetActive(true);
         otherPanel.GetComponent<Animator>().Play("OtherPanel");
         
+    }
+
+    public void PublishEvent()
+    {
+        SomePanelIsBlocking(true);
     }
 }

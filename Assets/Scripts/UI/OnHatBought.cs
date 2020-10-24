@@ -12,6 +12,8 @@ public class OnHatBought : MonoBehaviour
 
     public event HatBuyer OnHatBoughtEv;
     public event HatEquiper OnHatEquipedEv;
+
+
     void Start()
     {
         viewer = GetComponent<HatButtonViewer>();
@@ -24,9 +26,11 @@ public class OnHatBought : MonoBehaviour
             if (controlls.Score.Score >= hat.cost)
             {
                 controlls.hatPurchaseManager = this;
-               controlls.Subscribe();
+                controlls.Subscribe();
                 OnHatBoughtEv?.Invoke(hat.FormArray(), hat.cost, hat.sprite);
                 viewer.Bought = true;
+
+                controlls.shopPanel.PublishEvent();
             }
         }
         else

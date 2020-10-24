@@ -1,71 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Authentication.ExtendedProtection;
 using UnityEngine;
 
 public class UIPanel : MonoBehaviour
 {
-    public RectTransform panelTransform;
+    private Animator anim;
 
-    private bool buttonPressed = false, onScreen = false, IsSliding = false;
-
-    private float defaultOffScreenPos = 10.80f, defaultOnScreenPos = 7f, offset;
-
-    private Vector3 offsetVector;
-
-    [SerializeField]
-    private float panelSpeed = 5; 
-
-    
-    //offscreen: x =7  onscreen x= 10.75
+    private bool extended = false;
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
-        if (buttonPressed)
+        if(Input.mousePosition.x < 550 && extended)
         {
-            if (panelTransform.position.x > defaultOnScreenPos)
-            {
-                panelTransform.position += transform.up * Time.deltaTime * panelSpeed;
-            }
-            else
-            {
-                buttonPressed = false;
-                onScreen = true;
-                offset = defaultOnScreenPos - panelTransform.position.x;
-                offsetVector = new Vector3(offset, 0f, 0f);
-                panelTransform.position += offsetVector;
-            }
-        }
-        //Debug.Log(Input.mousePosition.x);
-        if (onScreen && Input.mousePosition.x < 570f)
-        {
-            IsSliding = true; //function that checks if our cursor is far from the panel and if the panel is on screen sets IsSliding to true
-        }
-        SlideReturn();
-    }
-    public void Button()
-    {
-        if (!onScreen&&!buttonPressed)
-        {
-            buttonPressed = true;
+            SlideReturn();
         }
     }
-    private void SlideReturn()
+    public void Slide()
     {
-        if (panelTransform.position.x < defaultOffScreenPos) //until the panel reaches its offscreen idle position
+        if (!extended)
         {
-            if (IsSliding) //and is sliding is true 
-            {
-                panelTransform.position += -transform.up * Time.deltaTime * panelSpeed;
-                // moves the panell towards offscreen idle 
-            }
+            anim.Play("SlidingPanelAnimation");
+            Invoke("SetExtendedTrue", 0.5f);
         }
         else
         {
-            onScreen = false;
-            IsSliding = false;
-            //the panel has reached its offscreen idle meaning its offscreen ang no longer sliding
-            offset = defaultOffScreenPos - panelTransform.position.x;
-            offsetVector = new Vector3(offset, 0f, 0f);
-            panelTransform.position += offsetVector;
+            SlideReturn();
         }
+    }
+    public void SlideReturn()
+    {
+        anim.Play("SlidingPanelReturn");
+        Invoke("SetExtendedFalse", 0.5f);
+    }
+
+    private void SetExtendedTrue()
+    {
+        extended = true;
+    }
+    private void SetExtendedFalse()
+    {
+        extended = false;
     }
 }

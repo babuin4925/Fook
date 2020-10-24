@@ -23,9 +23,22 @@ public class ScoreManagement : MonoBehaviour
     public Countdown timer;
     public Text awrnssTxt;
 
+    private float secondsSince;
+    private bool called = false;
+
     private void Update()
     {
         scoreTxt.text = score.ToString();
+
+        if (called) //timer
+        {
+            secondsSince += Time.deltaTime;
+            if (secondsSince >= 1f)
+            {
+                awrnssTxt.enabled = false;
+                called = false;
+            }
+        }
     }
     public void scoreIncrease()
     {
@@ -35,7 +48,9 @@ public class ScoreManagement : MonoBehaviour
     {
         awrnssTxt.enabled = true;
         awrnssTxt.text = message;
-        Invoke("hideTxt",1f);
+
+        called = true;
+        secondsSince = 0;
     }
     private void hideTxt()
     {
