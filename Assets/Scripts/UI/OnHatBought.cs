@@ -30,7 +30,7 @@ public class OnHatBought : MonoBehaviour
                 OnHatBoughtEv?.Invoke(hat.FormArray(), hat.cost, hat.sprite);
                 viewer.Bought = true;
 
-                controlls.shopPanel.PublishEvent();
+                controlls.shopPanel.PublishEvent(true);
             }
         }
         else

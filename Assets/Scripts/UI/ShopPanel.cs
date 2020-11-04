@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UI;
 
 public delegate void boolPasser(bool b);
 public class ShopPanel : MonoBehaviour
@@ -52,8 +49,8 @@ public class ShopPanel : MonoBehaviour
         
     }
 
-    public void PublishEvent()
+    public void PublishEvent(bool blocking)
     {
-        SomePanelIsBlocking(true);
+        SomePanelIsBlocking(blocking);
     }
 }

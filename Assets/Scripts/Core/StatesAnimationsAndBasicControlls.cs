@@ -39,6 +39,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     private int[] listPrev = new int[4];
 
     public ParticleSystem poopParticles;
+    private ParticleSystem.EmissionModule emission;
 
     private void Start()
     {
@@ -46,6 +47,8 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
         eyes = transform.Find("Eyes").gameObject;
 
         shopPanel.SomePanelIsBlocking += BlockDetector;
+
+        emission = poopParticles.emission;
     }
     void Update()
     {
@@ -121,6 +124,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
             hunger -= 1;
             OnHungerLowered?.Invoke(hunger, maxHunger + bonusHunger);
 
+            emission.SetBurst(0, new ParticleSystem.Burst(0,Score.clickPow));
             poopParticles.Play();
         }
         else

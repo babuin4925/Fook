@@ -20,10 +20,12 @@ public class ScoreManagement : MonoBehaviour
         }
     }
     public Text scoreTxt;
-    public Countdown timer;
     public Text awrnssTxt;
+    private Color32 defaultColor = new Color32((byte)231, (byte)110, (byte)110, (byte)255);
+    private Color32 goodColor = new Color32((byte)110, (byte)231, (byte)110, (byte)255);
 
     private float secondsSince;
+    private float seconds;
     private bool called = false;
 
     private void Update()
@@ -33,7 +35,7 @@ public class ScoreManagement : MonoBehaviour
         if (called) //timer
         {
             secondsSince += Time.deltaTime;
-            if (secondsSince >= 1f)
+            if (secondsSince >= seconds)
             {
                 awrnssTxt.enabled = false;
                 called = false;
@@ -46,14 +48,25 @@ public class ScoreManagement : MonoBehaviour
     }
     public void AwarenessTextShow(string message)
     {
+        awrnssTxt.color = defaultColor;
         awrnssTxt.enabled = true;
         awrnssTxt.text = message;
 
         called = true;
         secondsSince = 0;
+        seconds = 1f;
     }
-    private void hideTxt()
+    public void AwarenessTextShow(string message, bool good, float seconds)
     {
-        awrnssTxt.enabled = false;
+        if (good) { awrnssTxt.color = goodColor; }
+        else { awrnssTxt.color = defaultColor; }
+        
+        awrnssTxt.enabled = true;
+        awrnssTxt.text = message;
+
+        called = true;
+        secondsSince = 0;
+
+        this.seconds = seconds;
     }
 }
