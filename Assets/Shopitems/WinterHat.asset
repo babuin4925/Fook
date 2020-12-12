@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660f99452bff7c9469002e5046043297, type: 3}
   m_Name: WinterHat
   m_EditorClassIdentifier: 
-  cost: 400
+  cost: 700
   foodPriceBonus: 0
-  maxHungerBonus: 10
+  maxHungerBonus: 15
   clickPowerBonus: 0
   angerIncrease: 0
   sprite: {fileID: 3166322270659734654, guid: c57c723e4a2c63840821595d14d77eca, type: 3}
   name: Warm Hat
-  description: Keeps Fook nice and warm. A bonus of 10 points to Fooks hunger.
+  description: Keeps Fook nice and warm. A bonus of 10 points to Fooks Max hunger.
   bonusList: 000000000a0000000000000000000000

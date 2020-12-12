@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660f99452bff7c9469002e5046043297, type: 3}
   m_Name: Sunglasses
   m_EditorClassIdentifier: 
-  cost: 400
-  foodPriceBonus: 0
-  maxHungerBonus: 10
+  cost: 350
+  foodPriceBonus: 5
+  maxHungerBonus: 0
   clickPowerBonus: 0
   angerIncrease: 0
   sprite: {fileID: 9162939207420126677, guid: c57c723e4a2c63840821595d14d77eca, type: 3}
   name: Sunglasses
-  description: A cool looking Fook is a healthy Fook. Max hunger increases by 10!
+  description: A cool looking Fook is a healthy Fook. You look so cool the pet shop
+    owner gives you a 5g discount!
   bonusList: 000000000a0000000000000000000000

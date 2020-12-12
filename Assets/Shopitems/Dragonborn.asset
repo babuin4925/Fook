@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660f99452bff7c9469002e5046043297, type: 3}
   m_Name: Dragonborn
   m_EditorClassIdentifier: 
-  cost: 800
+  cost: 1500
   foodPriceBonus: 10
   maxHungerBonus: 20
   clickPowerBonus: 1
@@ -22,3 +22,4 @@ MonoBehaviour:
   description: FOOK RO DAAH. Fook yells at the pet shop worker and gets a 10 point
     discount! He becomes stronger and his max hunger increases by 20! Fook poops harder!
     (1 point)
+  bonusList: 00000000000000000000000000000000

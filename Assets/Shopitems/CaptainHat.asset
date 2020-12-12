@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660f99452bff7c9469002e5046043297, type: 3}
   m_Name: CaptainHat
   m_EditorClassIdentifier: 
-  cost: 500
+  cost: 800
   foodPriceBonus: 0
-  maxHungerBonus: 0
+  maxHungerBonus: 5
   clickPowerBonus: 1
   angerIncrease: 0
   sprite: {fileID: 1182784195508335311, guid: c57c723e4a2c63840821595d14d77eca, type: 3}
   name: Captain
   description: AY YAY CAPTAIN!!! Fook starts pooping harder because he's so cool (Bonus
-    of 1 point to Poop Power).
+    of 1 point to Poop Power). A bonus of 5 points to Max Hunger.
+  bonusList: 00000000000000000000000000000000

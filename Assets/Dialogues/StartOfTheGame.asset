@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8ceada5c848544a8421fe08debb359, type: 3}
   m_Name: StartOfTheGame
   m_EditorClassIdentifier: 
-  name: Maor Teaching
+  name: Alex
+  face: {fileID: 21300000, guid: a79adbecf60f0e843b7a464e9245607a, type: 3}
   sentences:
-  - 'Ma nishma kak dila '
-  - Ani maor melamed
+  - 'Hey, dude! What''s up? '
+  - Look what I brought you! This is a fook.
+  - I can't really tell you what it is buuuut.....
+  - 'It doesn''t matter ok? '
+  - It poops gold! Nuggets of pure 24 damn carat gold!
+  - All you need to do is give it a little bump on the head. Try it!

@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.Xml.Serialization;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +19,14 @@ public class ScoreManagement : MonoBehaviour
         {
             score = value;
             scoreTxt.text = score.ToString();
+            if (score >= 1000)
+            {
+                scoreOver1000?.Invoke(this, EventArgs.Empty);
+            }
+            if (score >= 3000)
+            {
+                scoreOver3000?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
     public Text scoreTxt;
@@ -27,6 +37,9 @@ public class ScoreManagement : MonoBehaviour
     private float secondsSince;
     private float seconds;
     private bool called = false;
+
+    public event EventHandler scoreOver3000;
+    public event EventHandler scoreOver1000;
 
     private void Update()
     {
@@ -44,7 +57,16 @@ public class ScoreManagement : MonoBehaviour
     }
     public void scoreIncrease()
     {
-        score = score + clickPow; 
+        score = score + clickPow;
+        
+        if (score>=3000)
+        {
+            scoreOver3000?.Invoke(this, EventArgs.Empty);
+        }
+        if (score >= 1000)
+        {
+            scoreOver1000?.Invoke(this, EventArgs.Empty);
+        }
     }
     public void AwarenessTextShow(string message)
     {

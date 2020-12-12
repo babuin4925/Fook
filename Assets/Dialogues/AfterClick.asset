@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8ceada5c848544a8421fe08debb359, type: 3}
+  m_Name: AfterClick
+  m_EditorClassIdentifier: 
+  name: Alex
+  face: {fileID: 21300000, guid: a79adbecf60f0e843b7a464e9245607a, type: 3}
+  sentences:
+  - There you go! See? Now you have a golden nugget!!
+  - Isn't it cool?! Though I prefer not to think where it came from...
+  - Also you better wash it you know, before you...
+  - Before you do whatever you wanna do with it! ANYWAYS
+  - 'You can buy things online from your computer! '
+  - Like hats for fook, and..... OTHER COOL STUFF
+  - Hats have different effects on him, sellers usually have them listed in the description.
+  - If you want to remove a hat just right click him and bla bla bla
+  - You can Upgrade his hunger and how much he poops in the menu on the RIGHT.
+  - Oh, I forgot to mention, Fook won't poop forever.
+  - You need to buy him food when he gets hungry.
+  - And don't worry if you run out of hunger and don't have enough money to buy food.
+  - I heard the dev made it so you get some money every now and then.
+  - Have fun! See ya!

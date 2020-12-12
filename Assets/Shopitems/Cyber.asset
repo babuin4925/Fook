@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 660f99452bff7c9469002e5046043297, type: 3}
-  m_Name: ChickenHead
+  m_Name: Cyber
   m_EditorClassIdentifier: 
-  cost: 1000
+  cost: 2077
   foodPriceBonus: 10
-  maxHungerBonus: 10
-  clickPowerBonus: 2
+  maxHungerBonus: 20
+  clickPowerBonus: 3
   angerIncrease: 0
   sprite: {fileID: -297406284525985868, guid: c57c723e4a2c63840821595d14d77eca, type: 3}
-  name: Richard
-  description: 'I''m afraid we''ll get weird phone calls after I get my Fook this
-    mask. Click power increases by 2. Fook scared the sh*t out of the pet shop owner
-    - 10 gold discount! Max hunger increases by 10 points! '
+  name: CyberFook2077
+  description: 'Wow this hat finally came out! I heard they hired Keanu Fooks for
+    the commercial... WHAT ARE THOSE STATS! +3 poop power, 10g discount on food and
+    +20 Max hunger! '
+  bonusList: 00000000000000000000000000000000

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660f99452bff7c9469002e5046043297, type: 3}
   m_Name: Melon
   m_EditorClassIdentifier: 
-  cost: 550
+  cost: 600
   foodPriceBonus: 5
   maxHungerBonus: 10
   clickPowerBonus: 0
@@ -20,5 +20,6 @@ MonoBehaviour:
   sprite: {fileID: 4610963139571275592, guid: c57c723e4a2c63840821595d14d77eca, type: 3}
   name: Melon Hat
   description: Tropical kind of accessory. You look so stupid, the pet shop worker
-    gives you a discount of 5 points. Fook eats some of the hat so his hunger increases
+    gives you a discount of 5g. Fook eats some of the hat so his Max hunger increases
     by 10 points!
+  bonusList: 00000000000000000000000000000000

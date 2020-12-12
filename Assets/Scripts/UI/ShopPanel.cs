@@ -13,6 +13,7 @@ public class ShopPanel : MonoBehaviour
     [SerializeField]private GameObject otherPanel;
 
     public ScoreManagement manager;
+    
     private void Start()
     {
         panelAnim = GetComponent<Animator>();

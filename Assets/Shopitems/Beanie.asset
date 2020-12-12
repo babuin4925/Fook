@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660f99452bff7c9469002e5046043297, type: 3}
   m_Name: Beanie
   m_EditorClassIdentifier: 
-  cost: 500
+  cost: 800
   foodPriceBonus: 10
-  maxHungerBonus: 0
+  maxHungerBonus: 5
   clickPowerBonus: 0
   angerIncrease: 0
   sprite: {fileID: 3432692127742862960, guid: c57c723e4a2c63840821595d14d77eca, type: 3}
   name: Beanie
-  description: 'A work of art rather than a hat, the pet shop worker gives you a 10
-    gold discount because it''s so perfect! '
+  description: A work of art rather than a hat, the pet shop worker gives you a 10
+    gold discount because it's so perfect! A bonus of 5 points to Max Hunger.
+  bonusList: 00000000000000000000000000000000

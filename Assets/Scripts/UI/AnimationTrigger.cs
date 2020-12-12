@@ -8,7 +8,7 @@ public class AnimationTrigger : MonoBehaviour
     
     public Animator fookAnim;
 
-    private bool animating;
+    private bool isPaused = false;
 
     private float seconds = 2f; 
     void Start()

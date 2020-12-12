@@ -15,7 +15,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
 
     public int hunger = 20;
     public int maxHunger = 20;
-    private int anger;
+    public int anger = 0;
     public int bonusHunger = 0;
 
     private Vector3 buttonOffset = new Vector3(0,0,0); 
@@ -31,10 +31,13 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
 
     public event twoIntParamDelegate OnHungerLowered;
     public event EventHandler OnFookStanding;
+    public event EventHandler OnFookReleased;
+    public event EventHandler OnHatGot;
 
     public GameObject hatsChanger;
     public GameObject hatResetButton;
     [HideInInspector]public GameObject eyes;
+    private GameObject eyebrows;
 
     private int[] listPrev = new int[4];
 
@@ -45,6 +48,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     {
         FookAnim = GetComponent<Animator>();
         eyes = transform.Find("Eyes").gameObject;
+        eyebrows = transform.Find("Eyebrows").gameObject;
 
         shopPanel.SomePanelIsBlocking += BlockDetector;
 
@@ -62,28 +66,40 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
         {
             Stand();
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0)||Input.GetKey(KeyCode.Space))
             {
                 hatsChanger.transform.position = new Vector3(-0.04f, -3.93f , 0);
                 eyes.transform.localPosition = new Vector3(0,-0.01f,0);
+                eyebrows.transform.localPosition = new Vector3(0.0015f, 0, 0);
 
                 SpriteChange(idle_clicked);
                 OnFookStanding?.Invoke(this, EventArgs.Empty);
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space))
             {
                 Click();
 
                 hatsChanger.transform.position = new Vector3(-0.04f, -3.765f, 0);
                 eyes.transform.localPosition = new Vector3(0,0,0);
+                eyebrows.transform.localPosition = new Vector3(0.0015f, 0.0084f, 0);
             }
 
             if (Input.GetMouseButtonDown(1))
             {
                 if (hatsChanger.GetComponent<SpriteRenderer>().sprite != null)
                 {
+                    hatResetButton.transform.Find("ResetText").GetComponent<Text>().text = "Reset";
                     hatResetButton.SetActive(true);
                     buttonActive = true;
+                }
+                else
+                {
+                    if (anger<100) 
+                    {
+                        hatResetButton.transform.Find("ResetText").GetComponent<Text>().text = "Let go";
+                        hatResetButton.SetActive(true);
+                        buttonActive = true;
+                    }
                 }
             }
         }
@@ -155,7 +171,6 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
         buyButtons.FoodPrice -= bonusList[0];
         bonusHunger = bonusList[1];
         Score.clickPow += bonusList[2];
-        anger += bonusList[3];
 
         buyButtons.FoodPrice += listPrev[0];
         Score.clickPow -= listPrev[2];
@@ -171,7 +186,10 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
             hunger = maxHunger + bonusHunger;
         }
         OnHungerLowered(hunger, maxHunger + bonusHunger);
+        OnHatGot?.Invoke(this, EventArgs.Empty);
 
+        anger+=100;
+        EyebrowCheck();
     }
     private void HatManagerEquip(int[] bonusList ,Sprite sprite)
     {
@@ -213,11 +231,28 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
             OnHungerLowered(hunger, maxHunger + bonusHunger);
 
         }
+        else
+        {
+            LetGo();
+        }
+    }
+    private void LetGo()
+    {
+        OnFookReleased?.Invoke(this, EventArgs.Empty);
     }
 
     private void HideButton()
     {
         hatResetButton.SetActive(false);
         buttonActive = false;
+    }
+
+    private void EyebrowCheck()
+    {
+        //ay yo, eyebrow check -__-
+        if (anger >= 300)
+        {
+            eyebrows.SetActive(true);
+        }
     }
 }

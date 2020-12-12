@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,19 +15,24 @@ public class DialogueManager : MonoBehaviour
     private Animator anim;
     public Animator fadeAnim;
     public ShopPanel panel;
+    public Image face;
+    private Animator faceAnim;
+    private bool doneTyping = true;
+    private string sentence;
 
-    void Start()
+    public EventHandler OnDialogEnded;
+
+    void Awake()
     {
         sentencesQueue = new Queue<string>();
         anim = GetComponent<Animator>();
-    }
-    void Update()
-    {
-        
+        faceAnim = face.GetComponent<Animator>();
     }
     public void StartDialogue(Dialogue dialogue)
     {
+        textField.text = "";
         sentencesQueue.Clear();
+        InformAboutDialog(true);
 
         foreach (string sentence in dialogue.sentences)
         {
@@ -33,44 +40,60 @@ public class DialogueManager : MonoBehaviour
         }
 
         nameText.text = dialogue.name;
+        face.sprite = dialogue.face;
         anim.Play("DialogueStart");
         Fade(true);
 
-        Invoke("DisplayNextSentence", 0.1f);
+        Invoke("DisplayNextSentence", 1f);
+        Invoke("ShowFace", 0.1f);
     }
     public void DisplayNextSentence()
     {
-        if (sentencesQueue.Count == 0)
+        if (!doneTyping)
         {
-            EndDialogue();
+            StopAllCoroutines();
+            textField.text = sentence;
+            doneTyping = true;
         }
         else
         {
-            string sentence = sentencesQueue.Dequeue();
-            StartCoroutine(Writer(sentence));
+            faceAnim.Play("Face_Idle");
+            if (sentencesQueue.Count == 0)
+            {
+                EndDialogue();
+            }
+            else
+            {
+                sentence = sentencesQueue.Dequeue();
+                StartCoroutine(Writer(sentence));
+            }
         }
-        
 
     }
     IEnumerator Writer(string sentence)
     {
+        doneTyping = false;
         textField.text = "";
+
         foreach (char letter in sentence.ToCharArray())
         {
             textField.text += letter;
             //play Audio;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.02f);
         }
+        doneTyping = true;
     }
     public void EndDialogue()
     {
+        InformAboutDialog(false);
         Fade(false);
+        faceAnim.Play("Face_Hide");
         anim.Play("DialogueEnd");
     }
     public void Fade(bool inTrueOutFalse)
     {
         fadeAnim.gameObject.SetActive(inTrueOutFalse);
-        panel.PublishEvent(inTrueOutFalse);
+        InformAboutDialog(inTrueOutFalse);
 
         if (inTrueOutFalse)
         {
@@ -79,6 +102,24 @@ public class DialogueManager : MonoBehaviour
         else
         {
             fadeAnim.Play("FadeOut");
+        }
+    }
+    public void ShowFace()
+    {
+        faceAnim.Play("Face_Appear");
+    }
+    public void InformAboutDialog(bool openedOrClosed)
+    {
+        try
+        {
+            panel.PublishEvent(openedOrClosed);
+        }
+        catch(NullReferenceException e)
+        {
+            if (!openedOrClosed)
+            {
+                OnDialogEnded?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 }

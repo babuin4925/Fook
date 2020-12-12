@@ -20,4 +20,5 @@ MonoBehaviour:
   sprite: {fileID: -5926832121448541893, guid: c57c723e4a2c63840821595d14d77eca, type: 3}
   name: Face Mask
   description: An indispensable part of 2020 fashion, gives a 5 point bonus to Fooks
-    hunger.
+    Max hunger.
+  bonusList: 00000000000000000000000000000000

@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660f99452bff7c9469002e5046043297, type: 3}
   m_Name: Reference
   m_EditorClassIdentifier: 
-  cost: 500
-  foodPriceBonus: 8
-  maxHungerBonus: 0
-  clickPowerBonus: 0
+  cost: 1000
+  foodPriceBonus: 5
+  maxHungerBonus: 10
+  clickPowerBonus: 2
   angerIncrease: 0
   sprite: {fileID: -7278322918618094238, guid: c57c723e4a2c63840821595d14d77eca, type: 3}
   name: Reference?
-  description: ORRRRRRAAAAA, Fook punches the pet shop worker so hard, he gives you
-    an 8 gold discount!
+  description: 'ORRRRRRAAAAA, Fook punches the pet shop worker so hard, he gives you
+    a 5g discount!Fook starts pooping harder by 2 points! A bonus of 10 points to
+    Max Hunger. '
+  bonusList: 00000000000000000000000000000000
