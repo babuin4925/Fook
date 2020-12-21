@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Closet : MonoBehaviour
 {
     public Animator anim;
-    public Sprite idle;
-    public Sprite corpse;
+    public ShopPanel panel;
+    private GameObject button;
+
     public bool BodyInside {
         get 
         {
@@ -15,6 +17,13 @@ public class Closet : MonoBehaviour
     }
 
     private bool isDripping = false;
+
+    public EventHandler OnClosetClicked;
+    private void Start()
+    {
+        button = this.transform.Find("Button").gameObject;
+        panel.SomePanelIsBlocking += DisableButton;
+    }
     public void Drip()
     {
         isDripping = true;
@@ -24,8 +33,12 @@ public class Closet : MonoBehaviour
     {
         if (isDripping)
         {
-            anim.SetBool("clicked", true);
+            OnClosetClicked?.Invoke(this, EventArgs.Empty);
         }
     }
     
+    private void DisableButton(bool a)
+    {
+        button.SetActive(!a);   
+    }
 }

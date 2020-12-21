@@ -21,12 +21,18 @@ public class DialogueManager : MonoBehaviour
     private string sentence;
 
     public EventHandler OnDialogEnded;
-
+    private AudioSource audio;
+    public AudioClip dialogLetterSound;
+    private float volume = 0.01f;
     void Awake()
     {
         sentencesQueue = new Queue<string>();
         anim = GetComponent<Animator>();
         faceAnim = face.GetComponent<Animator>();
+
+        audio = gameObject.GetComponent<AudioSource>();
+        audio.clip = dialogLetterSound;
+        audio.volume = volume;
     }
     public void StartDialogue(Dialogue dialogue)
     {
@@ -78,8 +84,8 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             textField.text += letter;
-            //play Audio;
-            yield return new WaitForSeconds(0.02f);
+            audio.Play();
+            yield return new WaitForSeconds(0.03f);
         }
         doneTyping = true;
     }
@@ -116,10 +122,10 @@ public class DialogueManager : MonoBehaviour
         }
         catch(NullReferenceException e)
         {
-            if (!openedOrClosed)
-            {
-                OnDialogEnded?.Invoke(this, EventArgs.Empty);
-            }
+        }
+        if (!openedOrClosed)
+        {
+            OnDialogEnded?.Invoke(this, EventArgs.Empty);
         }
     }
 }

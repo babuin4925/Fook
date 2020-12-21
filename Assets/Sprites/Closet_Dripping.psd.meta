@@ -116,18 +116,18 @@ TextureImporter:
       name: Closet_Dripping_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 8
-        width: 25
-        height: 4
+        x: 0
+        y: 0
+        width: 50
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c50fb627d16a09a49940d15b343d1d73
+      spriteID: 3e80ed11216ad4c42b77ecb301b48133
       internalID: 1049097766294069203
       vertices: []
       indices: 
@@ -142,13 +142,13 @@ TextureImporter:
         width: 50
         height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1652ccce9ea87d841b0a0523f7d2a821
+      spriteID: d25ed9ba4b378da468d211af29413969
       internalID: -8663850923254855020
       vertices: []
       indices: 
@@ -163,13 +163,13 @@ TextureImporter:
         width: 50
         height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9220c490c439d16449f6fc5355d427de
+      spriteID: 28853fbed9fce6140a81c30d78654b33
       internalID: -4743894938434689761
       vertices: []
       indices: 
@@ -184,13 +184,13 @@ TextureImporter:
         width: 50
         height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e7553bfe55200e418ae3a96fe5b9ed2
+      spriteID: b68122849f79ad4458d83017576a221d
       internalID: -3718279166333174421
       vertices: []
       indices: 
@@ -205,13 +205,13 @@ TextureImporter:
         width: 50
         height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d763fd7810e0fe40b2891fdbe548170
+      spriteID: 5925c6bc338f0db41b5e0ea41e0b74f1
       internalID: 4483345614046167780
       vertices: []
       indices: 

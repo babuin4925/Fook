@@ -18,14 +18,14 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
     public int anger = 0;
     public int bonusHunger = 0;
 
-    private Vector3 buttonOffset = new Vector3(0,0,0); 
+    private Vector3 buttonOffset = new Vector3(0, 0, 0);
 
     public ScoreManagement Score;
     public ShopPanel shopPanel;
     [HideInInspector] public OnHatBought hatPurchaseManager;
     public Buttons buyButtons;
 
-    private Animator FookAnim;
+    [HideInInspector] public Animator FookAnim;
 
     public Text awrnssTxt;
 
@@ -43,16 +43,22 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
 
     public ParticleSystem poopParticles;
     private ParticleSystem.EmissionModule emission;
+    private AudioSource audio;
 
+    System.Random rnd = new System.Random();
+
+    private void Awake()
+    {
+        shopPanel.SomePanelIsBlocking += BlockDetector;
+    }
     private void Start()
     {
         FookAnim = GetComponent<Animator>();
         eyes = transform.Find("Eyes").gameObject;
         eyebrows = transform.Find("Eyebrows").gameObject;
 
-        shopPanel.SomePanelIsBlocking += BlockDetector;
-
         emission = poopParticles.emission;
+        audio = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -112,11 +118,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
 
         if (Input.GetKeyDown("i")) //Debug key
         {
-            Score.score += 100;
-        }
-        if (Input.GetKeyDown("k")) //Debug key
-        {
-            buyButtons.FoodPrice = 30;
+            //Score.score += 100;
         }
 
     }
@@ -142,6 +144,10 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
 
             emission.SetBurst(0, new ParticleSystem.Burst(0,Score.clickPow));
             poopParticles.Play();
+
+            float pitch = (float)(rnd.Next(40,60)) / 50;
+            audio.pitch = pitch;
+            audio.Play();
         }
         else
         {
@@ -171,7 +177,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
         buyButtons.FoodPrice -= bonusList[0];
         bonusHunger = bonusList[1];
         Score.clickPow += bonusList[2];
-
+        anger += 100;
         buyButtons.FoodPrice += listPrev[0];
         Score.clickPow -= listPrev[2];
 
@@ -188,7 +194,7 @@ public class StatesAnimationsAndBasicControlls : MonoBehaviour
         OnHungerLowered(hunger, maxHunger + bonusHunger);
         OnHatGot?.Invoke(this, EventArgs.Empty);
 
-        anger+=100;
+
         EyebrowCheck();
     }
     private void HatManagerEquip(int[] bonusList ,Sprite sprite)

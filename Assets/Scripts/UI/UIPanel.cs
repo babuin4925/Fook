@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Authentication.ExtendedProtection;
 using UnityEngine;
+using UnityEngine.Experimental.U2D;
 
 public class UIPanel : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class UIPanel : MonoBehaviour
     }
     void Update()
     {
-        if(Input.mousePosition.x < 550 && extended)
+        if(Input.mousePosition.x / Camera.main.pixelWidth < 0.75 && extended)
         {
             SlideReturn();
         }
